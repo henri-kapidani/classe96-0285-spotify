@@ -2,9 +2,11 @@
 	--width-sidebar: 50px;
 	--height-overlay-upgrade: 90px;
 	--height-player: 90px;
+
+	--color-light: #fff
 }
 
-@media screen and (min-width: 600px) {
+@media (min-width: 600px) {
 	:root {
 		--width-sidebar: 230px;
 	}
@@ -18,7 +20,11 @@
 
 body {
 	font-family: 'Montserrat', sans-serif;
-	color: white;
+	color: var(--color-light);
+}
+
+a {
+	text-decoration: none;
 }
 
 .container {
@@ -26,7 +32,7 @@ body {
 }
 
 .sidebar {
-	background-color: aqua;
+	background-color: black;
 }
 
 .main-content {
@@ -93,57 +99,25 @@ body {
 	height: var(--height-player);
 }
 
-/* griglia */
+/****************************************************/
+/*                      End layout                  */
+/****************************************************/
 
-.grid {
-	--cols: 2;
-	--gap: 1rem;
 
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--gap);
-}
-
-.card	{
-	height: 200px;
-	background-color: salmon;
-	flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
-	/* flex: 0 0 calc((100% - 1 * 1rem) / 2); */
-}
-
-@media (min-width: 700px) {
-	.grid {
-		--cols: 4;
-	}
-
-	/* .card	{
-		flex: 0 0 calc((100% - 3 * 1rem) / 4);
-	} */
-}
-
-@media (min-width: 1100px) {
-	.grid {
-		--cols: 6;
-	}
-
-	/* .card	{
-		flex: 0 0 calc((100% - 5 * 1rem) / 6);
-	} */
-}
-
-nav ul {
+/* nav in main-area */
+.main-content nav ul {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	list-style: none;
 }
 
-nav li {
+.main-content nav li {
 	padding: 1rem 1.5rem;
 	position: relative;
 }
 
-nav li.active::after {
+.main-content nav li.active::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -154,13 +128,193 @@ nav li.active::after {
 	background-color: greenyellow;
 }
 
-nav a {
-	color: white;
-	text-decoration: none;
+.main-content nav a {
+	color: var(--color-light);
 	text-transform: uppercase;
 	white-space: nowrap;
 }
 
-nav a:hover {
+.main-content nav a:hover {
 	text-decoration: underline;
+}
+
+/* grids in main area */
+.main-content .grid {
+	--cols: 2;
+	--gap: 1rem;
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gap);
+}
+
+.main-content .card	{
+	min-height: 200px;
+	background-color: salmon;
+	flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+	/* flex: 0 0 calc((100% - 1 * 1rem) / 2); */
+}
+
+.main-content .card .image {
+	position: relative;
+}
+
+.main-content .card img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+}
+
+.main-content .card .image:hover {
+	cursor: pointer;
+}
+
+.main-content .card .image:hover::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-color: red;
+	opacity: 0.5;
+}
+
+.main-content .card .image:hover::after {
+	content: '';
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	inset: 0;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512' fill='white'%3E%3C!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3E%3Cpath d='M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z'/%3E%3C/svg%3E");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 30%;
+}
+
+@media (min-width: 700px) {
+	.main-content .grid {
+		--cols: 4;
+	}
+
+	/* .main-content .card	{
+		flex: 0 0 calc((100% - 3 * 1rem) / 4);
+	} */
+}
+
+@media (min-width: 1100px) {
+	.main-content .grid {
+		--cols: 6;
+	}
+
+	/* .main-content .card	{
+		flex: 0 0 calc((100% - 5 * 1rem) / 6);
+	} */
+}
+
+/* sidebar */
+.sidebar nav {
+	height: 100%;
+	white-space: nowrap;
+}
+
+.sidebar a {
+	color: var(--color-light);
+}
+
+.sidebar ul {
+	list-style: none;
+}
+
+.sidebar .list-level1 {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.sidebar .playlist {
+	margin-bottom: 2rem;
+}
+
+.sidebar .spaced {
+	margin-top: auto;
+}
+
+.sidebar .logo {
+	padding: 1.5rem;
+}
+
+.sidebar .item-link {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+	padding: .5rem 1.5rem;
+	/* margin: .5rem 1.5rem; */
+	/* max-width: max-content; */
+	opacity: 0.6;
+}
+
+.sidebar .item-link .icon {
+	width: 35px;
+	/* flex-shrink: 0; */
+}
+
+.sidebar .logo-small {
+	display: none;
+}
+
+.sidebar .user .item-link {
+	opacity: 1;
+}
+
+.sidebar .user .icon {
+	background-color: grey;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	border-radius: 35px;
+}
+
+.sidebar .playlist {
+	padding: .5rem 1.5rem;
+}
+
+.sidebar .playlist .playlist-action {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+}
+
+.sidebar .playlist .playlist-action .icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 35px;
+	height: 35px;
+	background-color: grey;
+	flex-shrink: 0;
+	font-size: 25px;
+}
+
+
+@media (max-width: 600px) {
+	.sidebar .logo-small {
+		display: block;
+	}
+
+	.sidebar .logo-big,
+	.sidebar .item-menu .text,
+	.sidebar .playlist {
+		display: none;
+	}
+
+	.sidebar .logo {
+		padding: 5px;
+		width: 100%;
+	}
+
+	.sidebar .item-link {
+		padding: 10px;
+	}
+
+	.sidebar .item-link .icon {
+		width: 100%;
+	}
 }
